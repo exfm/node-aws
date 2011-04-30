@@ -24,6 +24,11 @@ var request = aws.createRequest('SimpleDB', 'PutAttributes', {
 });
 
 client.request(request, function(response) {
-  console.log(response.requestId);
+  if (response instancenof aws.ErrorResponse) {
+    // uh oh
+    console.log(response.code, response.message);
+  } else {
+    // it worked!
+  }
 })
 ```

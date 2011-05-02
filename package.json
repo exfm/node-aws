@@ -12,6 +12,9 @@
     "lib": "lib"
   },
   "engines": {
-    "node": "*"
+    "node": "~0.4.7"
+  },
+  "dependencies": {
+    "libxmljs": "0.4.x"
   }
 }

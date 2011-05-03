@@ -12,7 +12,7 @@ var client = aws.createClient({
   secretAccessKey: '...',
 });
 
-var request = aws.createRequest('SimpleDB', 'PutAttributes', {
+aws.request('SimpleDB', 'PutAttributes', {
   domainName: "test",
   itemName: "item1",
   attributes: [
@@ -21,10 +21,8 @@ var request = aws.createRequest('SimpleDB', 'PutAttributes', {
       value: 'val1',
     },
   ],
-});
-
-client.request(request, function(response) {
-  if (response instancenof aws.ErrorResponse) {
+}, function(response) {
+  if (response instanceof Error) {
     // uh oh
     console.log(response.code, response.message);
   } else {

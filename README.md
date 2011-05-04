@@ -33,7 +33,7 @@ aws.request('simpledb', 'putAttributes', {
 
 ## Status
 
-The most up-to-date list of supported AWS services and methods is available by calling `require('node-aws')`. A potentially outdated list is provided below:
+The most up-to-date list of supported AWS services and methods is available by calling `require('node-aws').getSupportedMethods()`. A potentially outdated list is provided below:
 
  * ec2
    * describeAddresses

@@ -38,7 +38,9 @@ The most up-to-date list of supported AWS services and methods is available by c
 ### EC2 (Elastic Compute Cloud)
 
  * allocateAddress
+ * associateAddress
  * describeAddresses
+ * disassociateAddress
  * releaseAddress
 
 ### Route53

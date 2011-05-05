@@ -39,8 +39,12 @@ The most up-to-date list of supported AWS services and methods is available by c
 
  * allocateAddress
  * associateAddress
+ * createKeyPair
+ * deleteKeyPair
  * describeAddresses
+ * describeKeyPairs
  * disassociateAddress
+ * importKeyPair
  * releaseAddress
 
 ### Route53

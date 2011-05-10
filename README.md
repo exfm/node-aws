@@ -42,10 +42,17 @@ The most up-to-date list of supported AWS services and methods is available by c
  * createKeyPair
  * deleteKeyPair
  * describeAddresses
+ * describeAvailabilityZones
+ * describeInstances
  * describeKeyPairs
+ * describeRegions
  * disassociateAddress
+ * getConsoleOutput
  * importKeyPair
+ * rebootInstances
  * releaseAddress
+ * startInstances
+ * stopInstances
 
 ### Route53
 

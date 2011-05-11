@@ -12,7 +12,7 @@ var client = aws.createClient({
   secretAccessKey: '...',
 });
 
-aws.request('simpledb', 'putAttributes', {
+aws.request('simpleDb', 'putAttributes', {
   domainName: "test",
   itemName: "item1",
   attributes: [

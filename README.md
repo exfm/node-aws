@@ -1,39 +1,48 @@
-# Node AWS
+# node-aws
 
-Node AWS is an easy-to-use AWS client.
+`node-aws` is an easy-to-use AWS client for node.
 
 ## Usage
 
 ```javascript
-var aws = require('node-aws');
-
-var client = aws.createClient({
-  accessKeyId: '...',
-  secretAccessKey: '...',
-});
-
-aws.request('simpleDb', 'putAttributes', {
-  domainName: "test",
-  itemName: "item1",
-  attributes: [
-    {
-      name: 'key1',
-      value: 'val1',
-    },
-  ],
-}, function(response) {
-  if (response instanceof Error) {
-    // uh oh
-    console.log(response.code, response.message);
-  } else {
-    // it worked!
+var aws = require('node-aws').createClient(
+  'yourAccessKeyId',
+  'yourSecretAccessKey',
+  // You can optionally provide a hash of service endpoints,
+  // but they each have reasonable defaults (typically US-East-1).
+  {
+    'sdb': 'sdb.eu-west-1.amazonaws.com',
   }
-})
+);
+
+// All method request return a promise that will be fulfilled
+// once the response is received and parsed.
+aws.sdb.putAttributes(
+  {
+    domainName: "test",
+    itemName: "item1",
+    attributes: [
+      {
+        name: 'foo',
+        value: 'bar',
+      },
+    ],
+  },
+  // You can optionally override the default endpoint on a
+  // per-request basis as well.
+  'sdb.ap-southeast-1.amazonaws.com'
+).onSuccess(function() {
+  // it worked!
+  console.log(this.requestId, this.data);
+}).onFailure(function() {
+  // uh oh!
+  console.log(this.requestId, this.error);
+});
 ```
 
 ## Status
 
-The most up-to-date list of supported AWS services and methods is available by calling `require('node-aws').getSupportedMethods()`. A potentially outdated list is provided below:
+A potentially outdated list of supported AWS services and methods is provided below:
 
 ### EC2 (Elastic Compute Cloud)
 

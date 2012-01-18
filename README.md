@@ -104,3 +104,21 @@ A potentially outdated list of supported AWS services and methods is provided be
  * listDomains
  * putAttributes
  * select
+
+### SNS (Simple Notification Service)
+
+ * addPermission
+ * confirmSubscription
+ * createTopic
+ * deleteTopic
+ * getSubscriptionAttributes
+ * getTopicAttributes
+ * listSubscriptions
+ * listSubscriptionsByTopic
+ * listTopics
+ * publish
+ * removePermission
+ * setSubscriptionAttributes
+ * setTopicAttributes
+ * subscribe
+ * unsubscribe

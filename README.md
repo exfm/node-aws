@@ -122,3 +122,21 @@ A potentially outdated list of supported AWS services and methods is provided be
  * setTopicAttributes
  * subscribe
  * unsubscribe
+
+### SQS (Simple Queue Service)
+
+ * createQueue
+ * deleteQueue
+ * listQueues
+ * getQueueUrl
+ * getQueueAttributes
+ * setQueueAttributes
+ * addPermission
+ * removePermission
+ * sendMessage
+ * sendMessageBatch
+ * receiveMessage
+ * deleteMessage
+ * deleteMessageBatch
+ * changeMessageVisibility
+ * changeMessageVisibilityBatch

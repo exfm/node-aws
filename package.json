@@ -1,7 +1,7 @@
 {
   "name": "aws-api",
   "description": "A client interface to various AWS services.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/teen-/node-aws.git"

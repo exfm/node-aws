@@ -1,10 +1,10 @@
 {
-  "name": "node-aws",
+  "name": "aws-api",
   "description": "A client interface to various AWS services.",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "repository": {
     "type": "git",
-    "url": "git://github.com/raincloud/node-aws.git"
+    "url": "git://github.com/shawn-simon/node-aws.git"
   },
   "author": "Jordan Ryan Moore <jordanryanmoore@rainclouddev.com>",
   "main": "index.js",

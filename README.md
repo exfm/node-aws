@@ -2,6 +2,31 @@
 
 `node-aws` is an easy-to-use AWS client for node.
 
+
+var aws = require('aws'),
+    fs = require('fs'),
+    sequence = require('sequence');
+
+aws.connect('yourAccessKeyId', 'yourSecretAccessKey');
+
+sequence(aws).then(
+    function(next){
+        fs.readFile('dan-queue.json', next);
+    }).then(
+    function(next, err, data){
+        aws.s3.putObject("queue.extendsion.fm", "dan", data).then(
+            function(response){
+                console.log('Dan's queue updated on S3');
+            },
+            function(err){
+                console.error(err);
+            }
+        );
+    }
+);
+
+
+
 ## Usage
 
 ```javascript
@@ -140,3 +165,52 @@ A potentially outdated list of supported AWS services and methods is provided be
  * deleteMessageBatch
  * changeMessageVisibility
  * changeMessageVisibilityBatch
+
+### CS (CloudSearch)
+ * indexDocuments
+ * createDomain
+ * deleteDomain
+ * describeDomain
+ * defineIndexField
+ * deleteIndexField
+ * describeIndexFields
+ * defineRankExpression
+ * deleteRankExpression
+ * describeRankExpressions
+ * describeDefaultSearchField
+ * updateDefaultSearchField
+ * describeServiceAccessPolicies
+ * updateServiceAccessPolicies
+
+
+
+## CloudSearch Usage
+```javascript
+var aws = require('node-aws').createClient('yourAccessKeyId', 'yourSecretAccessKey');
+aws.cs.createDomain();
+
+function addDocs(){
+  var docClient = aws.cs.getSearchClient('doc-yourCloudsearchEndpoint>');
+  docClient.add('1', '1', {'username': 'dan', 'location': 'New York, NY'});
+  docClient.add('2', '1', {'username': 'danielle', 'location': 'Budapest, HU'});
+
+  docClient.commit().onSuccess(function(result){
+    console.log(result);
+    searchByUsername('dan*');
+  }).onFailure(function(err){
+    console.error(err);
+  });
+}
+
+function searchByUsername(username){
+  var searchClient = aws.cs.getSearchClient('search-yourCloudsearchEndpoint>');
+  searchClient.search({'q': 'field username: '+username, 'returnFields': ['username']})
+  .onSuccess(function(result){
+    console.log('Results found: '+result.hits);
+    console.log('Results: '+result.docs);
+
+  }).onFailure(function(err){
+    console.error(err);
+  });
+}
+```

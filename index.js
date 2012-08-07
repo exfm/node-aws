@@ -1,6 +1,9 @@
+"use strict";
+
 var cloudsearch = require('./lib/services/cs'),
     s3 = require('./lib/services/s3'),
-    ses = require('./lib/services/ses');
+    ses = require('./lib/services/ses'),
+    sqs = require('./lib/services/sqs');
 
 
 function AWS(){}
@@ -11,6 +14,7 @@ AWS.prototype.connect = function(accessKeyId, secretAccessKey){
     this.cloudsearch = new cloudsearch.CloudSearch(accessKeyId, secretAccessKey);
     this.s3 = new s3.S3(accessKeyId, secretAccessKey);
     this.ses = new ses.SES(accessKeyId, secretAccessKey);
+    this.sqs = new sqs.SQS(accessKeyId, secretAccessKey);
     return this;
 };
 

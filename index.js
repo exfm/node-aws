@@ -1,22 +1,37 @@
 "use strict";
 
-var cloudsearch = require('./lib/services/cs'),
+var fs = require('fs'),
+    cloudsearch = require('./lib/services/cs'),
     s3 = require('./lib/services/s3'),
     ses = require('./lib/services/ses'),
     sqs = require('./lib/services/sqs'),
-    cloudWatch = require('./lib/services/cloud-watch');
+    CloudWatch = require('./lib/services/cloud-watch');
 
 
 function AWS(){}
 
-AWS.prototype.connect = function(accessKeyId, secretAccessKey){
-    this.accessKeyId = accessKeyId;
-    this.secretAccessKey = secretAccessKey;
-    this.cloudsearch = new cloudsearch.CloudSearch(accessKeyId, secretAccessKey);
-    this.s3 = new s3.S3(accessKeyId, secretAccessKey);
-    this.ses = new ses.SES(accessKeyId, secretAccessKey);
-    this.sqs = new sqs.SQS(accessKeyId, secretAccessKey);
-    this.cloudWatch = new cloudWatch.CloudWatch(accessKeyId, secretAccessKey);
+AWS.prototype.connect = function(opts){
+    opts = opts || {};
+
+    var key = process.env.AWS_KEY,
+        secret = process.env.AWS_SECRET,
+        data;
+
+    if(opts.file){
+        data = JSON.parse(fs.readFileSync(opts.file));
+        key = data.key;
+        secret = data.secret;
+    }
+
+    this.accessKeyId = key;
+    this.secretAccessKey = secret;
+
+    this.s3 = new s3.S3(key, secret);
+    this.ses = new ses.SES(key, secret);
+    this.sqs = new sqs.SQS(key, secret);
+
+    this.cloudsearch = new cloudsearch.CloudSearch(key, secret);
+    this.cloudWatch = new CloudWatch(key, secret);
     return this;
 };
 

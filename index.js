@@ -3,7 +3,8 @@
 var cloudsearch = require('./lib/services/cs'),
     s3 = require('./lib/services/s3'),
     ses = require('./lib/services/ses'),
-    sqs = require('./lib/services/sqs');
+    sqs = require('./lib/services/sqs'),
+    cloudWatch = require('./lib/services/cloud-watch');
 
 
 function AWS(){}
@@ -15,6 +16,7 @@ AWS.prototype.connect = function(accessKeyId, secretAccessKey){
     this.s3 = new s3.S3(accessKeyId, secretAccessKey);
     this.ses = new ses.SES(accessKeyId, secretAccessKey);
     this.sqs = new sqs.SQS(accessKeyId, secretAccessKey);
+    this.cloudWatch = new cloudWatch.CloudWatch(accessKeyId, secretAccessKey);
     return this;
 };
 

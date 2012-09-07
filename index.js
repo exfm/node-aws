@@ -1,7 +1,7 @@
 "use strict";
 
 var fs = require('fs'),
-    cloudsearch = require('./lib/services/cs'),
+    cloudsearch = require('./lib/services/cloud-search'),
     s3 = require('./lib/services/s3'),
     ses = require('./lib/services/ses'),
     sqs = require('./lib/services/sqs'),
